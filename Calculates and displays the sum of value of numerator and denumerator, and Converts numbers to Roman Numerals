@@ -1,0 +1,92 @@
+## The program provides a menu of 3 choices so that the user can select which part wants to run. The Menu Option 1  calculates and displays
+## the sum of value of numerator and denumerator.  The Menu Option 2 converts numbers to Roman Numerals. The Menu Option 3 is for Exit. 
+##@note 4 hours 
+
+#Declare first print Menu. The purpose of the first function is to display the main menu. The function returns the main menu asking user for a number (1-3)   
+def print_menu():                                       
+    print('Enter 1 to calculate the value of a series') #Menu option 1
+    print('Enter 2 to process roman numerals')          #Menu option 2
+    print('Enter 3 to exit')                            #Menu option 3
+    print()                                             #Print menu
+
+#Declare second print Menu. The purpose of the second function is to display the main menu. The function returns the main menu asking user for a number (1-3) 
+def print_menu2():                                       
+    print('Enter 1 to process data for option 1')       #Menu option 1
+    print('Enter 2 to process data for option 2')       #Menu option 2
+    print('Enter 3 to exit')                            #Menu option 3
+    print()                                             #Print menu
+
+#Declare a function that converts entered number to Roman number. 
+#The purpose of the function is to display the converted Roman number. 
+#Variable num keeps the entered from the user number. Variable rm keeps the converted Roman number.
+def numbers():      
+    if num == 1:    #Checking if the number is 1 to convert in I
+        rm = 'I'
+    elif num == 2:  #Checking if the number is 2 to convert in II
+        rm = 'II'
+    if num == 3:    #Checking if the number is 3 to convert in III
+        rm = 'III'
+    elif num == 4:  #Checking if the number is 4 to convert in IV
+        rm = 'IV'
+    if num == 5:    #Checking if the number is 5 to convert in V
+        rm = 'V'
+    elif num == 6:  #Checking if the number is 6 to convert in VI
+        rm = 'VI'
+    if num == 7:    #Checking if the number is 7 to convert in VII
+        rm = 'VII'
+    elif num == 8:  #Checking if the number is 8 to convert in VIII
+        rm = 'VIII'
+    if num == 9:    #Checking if the number is 9 to convert in IX
+        rm = 'IX'
+    elif num == 10: #Checking if the number is 10 to convert in X
+        rm = 'X'
+    print("Number = {} and Roman number is {} ".format(num, rm))#Display message and return the Roman number for the particular entered number after the function has been called
+        
+    
+print_menu() #Display first menu to start
+
+loop = True      
+
+while loop:                                             #While loop which will keep going until loop = False
+    
+    choice = int(input("Enter your choice [1-3]: "))    #Prompt the user which program wants to process (1,2,3)
+    
+     
+    if choice == 1:     # This program calculates and displays the sum of value of numerator and denumerator.
+        starting_value = int(input('Enter the starting value of the series: ')) #User input for starting value
+        ending_value = int(input('Enter the ending value of the series: '))	#User input for ending value
+         
+        sum_of_the_series = 0 					            #Declare variable where we will store the sum
+        for x in range(starting_value, ending_value+1):		            #Start cycle from the starting_value to the ending_value
+            sum_of_the_series += x/ending_value  		            #Calculate the sum
+            format_sum = "{:.2f}".format(sum_of_the_series)                 #Format the sum
+            ending_value -=1 					            #Decrement ending_value-each time the cycle is rotated, the value must be 1 less
+        print("The sum of the series: ", format_sum) 		            #Print a total sum of all series
+        print_menu2()   					            #Displays second menu and asking user which program wants to run
+        print()							            #Print empty line
+
+      
+    elif choice == 2:                                                                       # This program converts numbers to Roman Numerals 
+
+        roman_number = int(input('Enter how many numbers to process: '))                    #Asking user how many numbers wants to process.
+        while roman_number <1 or roman_number >10:                                          #Cheking for valid/invalid number-If the entered number is invalid (less than 1 or greater than 10)
+            roman_number = int(input('Invalid number. Enter how many numbers to process: '))#Display invalid message and prompt the user to enter a valin number.
+        else:                                                                               #If the enterd number is valid (between 1 and 10)
+            for i in range(0, roman_number):                                                #Cycle starts with valid number-from 1 to the last 
+                num = int(input('Enter your number: '))                                     #Promp the user to enter number "i" times.
+                if num>=1 and num <=10:                                                     #For all valid numbers 
+                    numbers()                                                               #Call "def numbers()" function
+                else:                                                                       #For all invalid numbers
+                    num = int(input("Invalid number. Please enter number between 1 and 10: "))#Promp the user to enter number
+                    numbers()                                                               #Call "def numbers()" function
+        
+        print_menu2()                                                                       #Displays second menu and asking user which program wants to run
+        print()		                                                                    #Print empty line
+    
+    elif choice == 3: 	                                                                    #This third choice is for exit
+        print ("Exit")	                                                                    #Display Exit message
+        loop = False                                                                        #Stop loop execution
+    else:        
+        print ("Invalid choice - try again") 	                                            #Any integer inputs other than values 1-3 I print an error message
+        print_menu2()    			                                            #Displays second menu and asking user which program wants to run
+        
