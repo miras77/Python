@@ -1,6 +1,5 @@
 ## The program provides a menu of 3 choices so that the user can select which part wants to run. The Menu Option 1  calculates and displays
 ## the sum of value of numerator and denumerator.  The Menu Option 2 converts numbers to Roman Numerals. The Menu Option 3 is for Exit. 
-##@note 4 hours 
 
 #Declare first print Menu. The purpose of the first function is to display the main menu. The function returns the main menu asking user for a number (1-3)   
 def print_menu():                                       
