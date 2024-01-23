@@ -1,0 +1,85 @@
+
+## Creating a program that display the data, for all entered employee, 
+## calculate and display the total number of hours for all employees, 
+## using lists, and display any decimal values with 2 digits after the decimal point  
+
+ 
+listEmployeeName = []       #Create a list for employees' names
+listHours = []              #Create a list for employees' working hours
+listHoursPerEmployee = []   #Create a list for working hours per employee
+listHoursPerDay = []        #Create a list for for working hours per day
+
+
+number_emoloyee = int(input('Enter the number of employees: '))  #Asking user how many employees wants to process.
+while number_emoloyee < 1 or number_emoloyee >= 10:              #Cheking for valid/invalid number-If the entered number is invalid (less than 0 or greater than 10)
+    number_emoloyee = int(input('Invalid - try again: Enter the number of employees: '))#Display invalid message and prompt the user to enter a valin number.
+                                                                 
+week_days = int(input('Enter the number of weekdays for hours worked: '))#If the entered number is valid (greater than 0 or less than 10). Asking user how many week days.
+while week_days < 1 or week_days > 7:                           #Cheking for valid/invalid number-If the entered number is invalid (less than 1 or greater than 7)
+    week_days = int(input('Invalid - try again: Enter the number of weekdays for hours worked: '))  #Asking user how many week days.
+                                                                
+for i in range (number_emoloyee):                               #If the entered week day is valid (greater than 1 or less than 8). Cycle starts with valid number-from 1 to the last 
+    employeeName = input("Enter the employee name: ")           #Promp the user to enter employee number "i" times5
+    listEmployeeName.append(employeeName)                       #Add employee name to the list
+
+listHours = [[0 for c in range(week_days)] for r in range(number_emoloyee)]                 # Create 2-dimensional list
+for i in range (number_emoloyee):                                                           #For each employee
+    for j in range (week_days):                                                             #For each week day
+        hoursWork = float(input("Enter hours worked for {}: ".format(listEmployeeName[i]))) #Prompt the user to enter the worked hours
+        listHours[i][j] = hoursWork 
+        while hoursWork < 0:                                                                #Cheking for the valid working hours
+            hoursWork = float(input("Invalid - try again: Enter the hours worked:"))        #Employees' can't work less than 0 hour
+            listHours[i][j] = hoursWork
+#Calculate the total hours worked by each employee and store it in a list   
+for i in listHours:
+    totalHours = 0
+    for j in i:
+        totalHours += j
+    listHoursPerEmployee.append(totalHours)                    
+#print(listHoursPerEmployee)
+           
+#Calculate the total hours worked for each day of the week and store it in a list
+for i in range (week_days):
+    hoursPerDay = 0
+    for j in range (number_emoloyee):
+        hoursPerDay += listHours[j][i]
+    listHoursPerDay.append(hoursPerDay)
+#print(listHoursPerDay)
+
+#Format the 2-dimensional list with 2 digits after the decimal point
+for i in range (number_emoloyee):
+    for j in range (week_days):
+        var = listHours[i][j]
+        var = "{:.2f}".format(var)
+        listHours[i][j] = var
+
+
+formatted_listHoursPerDay = ["%.2f"%item for item in listHoursPerDay]           #Format the total hours worked for each day of the week with 2 digits after the decimal point
+
+formatted_listHoursPerEmployee = ["%.2f"%item for item in listHoursPerEmployee] #Format the total hours worked by each employee with 2 digits after the decimal point 
+                    
+print("EMPLOYEE REPORT")                                                        #Dispaly heading 
+print()
+for i in range(number_emoloyee):
+    print(listEmployeeName[i], *listHours[i], formatted_listHoursPerEmployee[i], sep = '\t') #Print the data for all users, worked days, and worked hours
+
+print("Total: ", *formatted_listHoursPerDay, sep = '\t')                         #Print total hours per day
+print()
+
+pay = 0
+employee = 0
+
+loop = True
+while (loop):
+    employee = input("Enter the name of an employee (enter done to exit): ")    #Prompt the user to enter name of employee
+    if employee == "done":
+        loop = False        
+    elif employee in listEmployeeName:                                          #Cheking if employee exist in the list
+        i = listEmployeeName.index(employee)                                    #If employee not exist in the list
+        pay = int(listHoursPerEmployee[i]) * 15                                 #Calculate payment
+        print("Total hours worked for {}:{:0.2f}     Pay:{:0.2f}".format(employee, listHoursPerEmployee[i], pay)) #Format the total hours
+        print()
+    else:
+        print("{} not found in my list". format(employee))                      #Print message if employee does not exist in the list
+        print()      
+
