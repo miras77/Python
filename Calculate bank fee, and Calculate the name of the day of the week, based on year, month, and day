@@ -1,0 +1,90 @@
+#The first program is for processing checks, calculate bank fee, and display the fee.
+#The second program prompts the user to enter a year, month, and day of the month, and then it displays the name of the day of the week.
+
+import sys
+
+# Asking user to input value 1, 2, or 3
+# Declare initial input value from user
+x = int(input('Enter the value of 1 to calculate bank fees or 2 to calculate day of the week or 3 to quit: '))
+
+# A program for processing checks if initial input value is 1
+
+if x == 1:
+    # Asking the user for the number of checks
+    numberofchecks = input('Enter the number of checks: ') 
+    numberofchecks = int(numberofchecks) 
+    #Calculate and print the fee based ot the table and formula  in Homwork2        
+    if numberofchecks > 1 and numberofchecks <= 20:
+        fee = 0.09
+        bankfee =  (8 + numberofchecks * fee)
+        print("The bank fee is:", bankfee)
+    if numberofchecks > 20 and numberofchecks <= 40:
+        fee = 0.07
+        bankfee =  (8 + numberofchecks * fee)
+        print("The bank fee is:", bankfee)
+    if numberofchecks > 40 and numberofchecks <= 60:
+        fee = 0.06 
+        bankfee =  (8 + numberofchecks * fee)
+        print("The bank fee is:", bankfee)
+    if numberofchecks > 60:
+        fee = 0.05
+        bankfee =  (8 + numberofchecks * fee)  
+        print("The bank fee is:", bankfee)
+    #Negative number of cheks or 0, issue an error message and set the fee to -999
+    elif numberofchecks <= 0:
+        fee = -999
+        print("Invalid number of checks has been entered - No processing will be performed.")
+        print("The bank fee is:", fee) 
+        
+# A program finding the day of the week if initial input value is 2
+
+elif  x == 2:
+    # Asking user to input year
+    y = int(input('Enter year: ') )
+    j = int(y // 100) #j is the century 
+    k = int(y % 100)  #k is the year of the century
+    
+    # Asking user to input month
+    m = int(input("Enter mounth number. (1-12) ")) 
+    #Checking for the existing month - if doesn't exist, print error message 
+    if(m > 12 or m < 1):     
+        print("ERROR - Invalid month number")
+        sys.exit()
+    # If month exist do some calculatin
+    else:
+        # extra processing for January and February, we also subtract one from year
+        if m == 1:
+           m = 13
+           y = y-1
+        elif m == 2:
+           m = 14
+           y = y-1
+        else:    
+           m = int(m)   
+           
+    # Asking user to input day of the month
+    d = int(input("Enter day of the month: (1-31) ")) 
+    #Checking for the existing day - if doesn't exist, print error message 
+    if(d > 31 or  d < 1):
+        print("ERROR - Invalid month number")
+        sys.exit()
+    #If day exist 
+    else:    
+        q = int(d)   
+        
+    #Calculation based on  Ziller formula
+    H = (q +(26*(m+1))//10 +k +k//4 +j//4 +(5*j)) % 7
+    
+    #List of weeks
+    dayOfTheWeek = ["Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday","Friday"] 
+    print("Day of week is: ", dayOfTheWeek[H] )
+    
+    
+# Display a quit message if initial input value is 3    
+elif x == 3: 
+    print('Thanks for using my program.')
+    
+    
+# Display a message for initial input value different than 1, 2, or 3
+else:
+    print("This value is not valid.", x)
