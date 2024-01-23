@@ -1,0 +1,30 @@
+import math 
+#Ask user for input
+x = input('Enter the value of x:') 
+
+x = int(x) 
+#calculate yyyy
+yyyy = 3*x**3+5*x**2-1/(x+5) 
+#calculate zzzz
+zzzz = math.sqrt(x+2) - 3*x/(math.sqrt(x) + 2*x**2) 
+#Display yyyy
+print ("The value of the expression for yyyy is: ", yyyy) 
+#Display zzzz
+print ("The value of the expression for zzzz is: ", zzzz) 
+
+ 
+#Ask the user for input
+time = input('Enter the elapsed time for a football game in seconds: ')
+time = int(time) 
+ 
+#Calculate hours, minutes, and seconds
+Seconds = time / 60
+Seconds2 = time % 60 
+Minutes = Seconds / 60
+Minutes2 = Seconds % 60 
+Hours = Minutes / 24  
+Hours2 = Minutes % 24   
+#Print the result
+print ("Hours", int(Hours2))
+print ("Minutes", int(Minutes2))
+print ("Seconds",int(Seconds2)) 
