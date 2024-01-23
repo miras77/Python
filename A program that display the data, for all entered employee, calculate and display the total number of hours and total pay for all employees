@@ -1,0 +1,45 @@
+
+## Creating a program that display the data, for all entered employee, 
+##calculate and display the total number of hours for all employees, 
+##calculate and display the total pay for all employees  
+##using lists, and display any decimal values with 2 digits after the decimal point  
+
+list_fname = [] #Create empty list for employees' first names
+list_lname = [] #Create empty list for employees' last names
+list_hours = [] #Create empty slist for employees' working hours
+list_rate = []  #Create empty list for employees' pay rate
+list_pay = []   #Create empty list for each employee pay
+
+number_emoloyee = int(input('Enter the number of employees: '))  #Asking user how many employees wants to process.
+while number_emoloyee < 0 or number_emoloyee > 100:              #Cheking for valid/invalid number-If the entered number is invalid (less than 0 or greater than 100)
+    number_emoloyee = int(input('Invalid - try again: Enter the number of employees: ')) #Display invalid message and prompt the user to enter a valin number.
+else:                                                            #If the entered number is valid (greater than 0 or less than 100) 
+    for i in range (0, number_emoloyee):                         #Cycle starts with valid number-from 1 to the last 
+        fName = input("Enter the first name: ")                  #Promp the user to enter FirsName number "i" times
+        lName = input("Enter the last name: ")                   #Promp the user to enter LastName "i" times
+        hoursWork = int(input("Enter the hours worked: "))
+        while hoursWork < 1:                                     #Cheking for the valid working hours
+            hoursWork = int(input("Invalid - try again: Enter the hours worked: ")) #"Employees' can't work less than 1 hour"
+        else:                                                    #If the working hours is valid number
+            payRate = float(input("Enter the pay rate: "))       #Promp the user to enter work hours "i" times.
+        while payRate <= 0:                                      #Cheking for the valid pay rate
+            payRate = float(input("Invalid - try again: Enter the pay rate: ")) #"Employees' wages can't be lower than $0.00"
+        else:                                                    #If the pay rate is valid number
+            if hoursWork <= 40:                                  #For any hours worked up to 40
+                grossPay = hoursWork * payRate                   #Calculating gross pay
+            else:                                                #If working hours are greater than 40
+                grossPay = ((hoursWork - 40) * (payRate * 1.5)) + (40 * payRate) #Any hours worked over 40 is paid at 1.5 times the regular rate
+        list_fname.append(fName)      #Add first name to the list
+        list_lname.append(lName)      #Add last name to the list
+        list_hours.append(hoursWork)  #Add working hours to the list
+        list_rate.append(payRate)     #Add pay rate to the list
+        list_pay.append(grossPay)     #Add total pay for each employee to the list
+        
+        total_houres = sum(list_hours)      #Calculate sum of all employee working howrs
+        total_pay = sum(list_pay)           #Calculate sum of all employee pay rates
+    print("A C M E C O R P O R A T I O N")  #Dispaly heading 
+    print("first  last  hours  rate  pay")  #Dispaly heading 
+    for i in range(0,number_emoloyee):      #For each entered employee
+        print(list_fname[i], list_lname[i], list_hours[i], format(list_rate[i], '.2f'), format(list_pay[i], '.2f')) #Display first name, last name, working hours, rate, and payment
+    print("Total number of hours worked by all employees: ",  total_houres)                                         #Display total number of hours worked
+    print("Total pay for all employees: {:0.2f}". format(total_pay))                                                #Display total pay for all employes 
